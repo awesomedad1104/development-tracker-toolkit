@@ -21,13 +21,13 @@ dayjs.extend(relativeTime)
 export async function getStaticPaths(context) {
 
   const airtable = new Airtable({
-    apiKey: process.env.AIRTABLE_API_KEY,
+    apiKey: process.env.AIRTABLE_PAT,
   });
 
   // get all the records in the Projects table
   const records = await airtable
     .base(process.env.AIRTABLE_BASE_ID)('Projects')
-    .select({ filterByFormula: process.env.RECORD_FILTER })
+    .select({ filterByFormula: process.env.AIRTABLE_RECORD_FILTER })
     .all();
 
   // generate an array of Projects
@@ -54,7 +54,7 @@ export async function getStaticPaths(context) {
 export async function getStaticProps(context) {
 
   const airtable = new Airtable({
-    apiKey: process.env.AIRTABLE_API_KEY,
+    apiKey: process.env.AIRTABLE_PAT,
   });
 
   // get the particular Project whose slug matches

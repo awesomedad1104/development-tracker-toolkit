@@ -16,7 +16,7 @@ module.exports = withMDX({
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   images: {
-    domains: ['dl.airtable.com']
+    domains: ['dl.airtable.com', 'v5.airtableusercontent.com']
   }
 })
 

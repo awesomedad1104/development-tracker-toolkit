@@ -15,6 +15,10 @@ module.exports = {
       },
     },
   },
+        fontFamily: {
+        'sans': ['Source Sans Pro', 'sans-serif'],
+        'display': ['EB Garamond', 'serif'],
+      },
   variants: {
     extend: {},
   },

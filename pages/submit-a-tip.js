@@ -158,11 +158,7 @@ export default function SubmitPage() {
             </button>
           ) : (
             <span
-              className="w-full flex justify-around items-center py-8 text-lg leading-6"
-              style={{
-                background: `rgba(215, 226, 255, 0.4)`,
-                fontFamily: "DM Sans",
-              }}
+              className="w-full flex justify-around items-center py-8 text-lg leading-6 tip-response-message"
             >
               Thanks! We received your tip.
             </span>
