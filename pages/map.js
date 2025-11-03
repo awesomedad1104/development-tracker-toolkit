@@ -15,14 +15,14 @@ import { geocodeAddress } from "../utils/geocodeAddress";
 
 export async function getStaticProps(context) {
   const airtable = new Airtable({
-    apiKey: process.env.AIRTABLE_API_KEY,
+    apiKey: process.env.AIRTABLE_PAT,
   });
 
   const records = await airtable
     .base(process.env.AIRTABLE_BASE_ID)("Projects")
     .select({
       sort: [{ field: "Last Modified", direction: "desc" }],
-      filterByFormula: process.env.RECORD_FILTER,
+      filterByFormula: process.env.AIRTABLE_RECORD_FILTER || "{Record status} = 'Published'",
     })
     .all();
 
@@ -182,7 +182,7 @@ export default function ProjectMapPage(props) {
       </Head>
 
       <div className="max-w-xl mx-auto">
-        <h2>Map of {city} development projects</h2>
+        <h1>Map of {city} development projects</h1>
         <p className="pb-2">
           Explore the map or enter an address to see developments in {city}.
           <span className="block">Click on a project to see more details.</span>
@@ -196,7 +196,7 @@ export default function ProjectMapPage(props) {
         </span>
       </div>
       <div id="geocoder" className="my-7 max-w-xl mx-auto"></div>
-      <div id="map" className="max-w-6xl mx-auto border-1 border-black h-96" />
+      <div id="map" className="max-w-6xl mx-auto border-1 border-black h-[31.68rem]" />
       <ProjectList
         projects={visibleProjects.map(p => p.properties)}
         title="All development projects in the current map view"
