@@ -10,14 +10,14 @@ import { city, state, siteTitle } from "../toolkit.config";
 
 export async function getStaticProps(context) {
   const airtable = new Airtable({
-    apiKey: process.env.AIRTABLE_API_KEY,
+    apiKey: process.env.AIRTABLE_PAT,
   });
 
   const records = await airtable
     .base(process.env.AIRTABLE_BASE_ID)("Projects")
     .select({
       sort: [{ field: "Last Modified", direction: "desc" }],
-      filterByFormula: process.env.RECORD_FILTER,
+      filterByFormula: process.env.AIRTABLE_RECORD_FILTER || "{Record status} = 'Published'",
     })
     .all();
 
@@ -52,7 +52,7 @@ export default function ListPage({ projects }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <div className="max-w-xl mx-auto">
-        <h2>List of {city} development projects</h2>
+        <h1>List of {city} development projects</h1>
         <p className="pb-2">
           Search for developments or browse the list, then click on any project
           for more details.
