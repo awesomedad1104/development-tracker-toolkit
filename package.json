@@ -17,7 +17,6 @@
     "@mapbox/mapbox-gl-geocoder": "^4.7.4",
     "@mdx-js/loader": "^2.0.0",
     "@mdx-js/react": "^2.0.0",
-    "@netlify/plugin-nextjs": "^4.2.0",
     "@next/mdx": "^12.1.0",
     "@supabase/supabase-js": "^1.22.6",
     "@turf/bbox": "^6.5.0",
@@ -46,6 +45,7 @@
     "tailwindcss": "^3.0.15"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.14.7",
     "eslint": "7.30.0",
     "eslint-config-next": "11.0.1"
   }
