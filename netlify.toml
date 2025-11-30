@@ -2,3 +2,5 @@
   command = "npm run build"
   publish = "out" # plugin will manage necessary outputs; Netlify UI uses plugin
 
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
