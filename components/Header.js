@@ -73,23 +73,22 @@ const Header = ({ nav, showNav }) => {
           {/* Logo */}
           <div className="flex-1 flex justify-center">
           <a href="https://oviedocommunitynews.org/" 
-             class="custom-logo-link" 
+             className="custom-logo-link" 
              rel="home" 
              aria-current="page">
-              src=""
-              <img width="388" 
-                   height="104" 
+              <Image 
+                   width={388} 
+                   height={104} 
                    src="/images/OCN-MainLogo-1.svg" 
-                   class="custom-logo" 
-                   alt="Oviedo Community News" 
-                  decoding="async" />
+                   className="custom-logo" 
+                   alt="Oviedo Community News" />
               </a>          
           </div>
 
           {/* Header Actions */}
           <div className="header-actions hidden md:flex">
-            <a id="Donate_Header" class="wp-block-button__link" href="https://oviedocommunitynews.org/support-us">♥ Donate</a>
-            <a class="pelcro-login-button" href="https://billing.stripe.com/p/login/aEU4iRbK6fEbfVm144">Login</a>
+            <a id="Donate_Header" className="wp-block-button__link" href="https://oviedocommunitynews.org/support-us">♥ Donate</a>
+            <a className="pelcro-login-button" href="https://billing.stripe.com/p/login/aEU4iRbK6fEbfVm144">Login</a>
           </div>   
           
           {/* Hamburger Menu for Mobile */}
