@@ -72,19 +72,24 @@ const Header = ({ nav, showNav }) => {
           
           {/* Logo */}
           <div className="flex-1 flex justify-center">
-            <Image
-              src="/images/OCN-MainLogo-1.svg"
-              width={388}
-              height={104}
-              alt="Logo"
-              className="h-20 md:h-32 w-auto"
-            />
+          <a href="https://oviedocommunitynews.org/" 
+             class="custom-logo-link" 
+             rel="home" 
+             aria-current="page">
+              src=""
+              <img width="388" 
+                   height="104" 
+                   src="/images/OCN-MainLogo-1.svg" 
+                   class="custom-logo" 
+                   alt="Oviedo Community News" 
+                  decoding="async" />
+              </a>          
           </div>
 
           {/* Header Actions */}
           <div className="header-actions hidden md:flex">
-            <button className="donate-button">♥ Donate</button>
-            <Link href="/login">Login</Link>
+            <a id="Donate_Header" class="wp-block-button__link" href="https://oviedocommunitynews.org/support-us">♥ Donate</a>
+            <a class="pelcro-login-button" href="https://billing.stripe.com/p/login/aEU4iRbK6fEbfVm144">Login</a>
           </div>   
           
           {/* Hamburger Menu for Mobile */}
