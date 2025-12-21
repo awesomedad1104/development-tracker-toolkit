@@ -80,7 +80,7 @@ const ProjectReport = ({ id }) => {
       </div>
       <div>
           <label htmlFor="textarea">What is the photo&apos;s source? </label>
-          <radiogroup className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2">
             <div className="flex items-center flex-row">
               <input
                 type="radio"
@@ -106,7 +106,7 @@ const ProjectReport = ({ id }) => {
                 published.
               </label>
             </div>
-          </radiogroup>
+          </div>
         </div>
       <div className="flex items-center justify-around">
         {!response && (

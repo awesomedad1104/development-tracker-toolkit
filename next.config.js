@@ -15,9 +15,19 @@ const withMDX = require('@next/mdx')({
 module.exports = withMDX({
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
+  turbopack: {},
   images: {
     unoptimized: true,
-    domains: ['dl.airtable.com', 'v5.airtableusercontent.com']
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'dl.airtable.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'v5.airtableusercontent.com',
+      },
+    ]
   }
 })
 

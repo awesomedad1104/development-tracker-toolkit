@@ -69,26 +69,29 @@ export default function ProjectMapPage(props) {
 
     map.addControl(new NavigationControl());
 
-    const geocoder = new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-      placeholder: `Search for an address in ${city}`,
-      bbox: boundingBox,
-      countries: "us",
-    });
+    // Check if geocoder already exists to avoid duplicates
+    if (!document.querySelector('#geocoder .mapboxgl-ctrl-geocoder')) {
+  
+      const geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        placeholder: `Search for an address in ${city}`,
+        bbox: boundingBox,
+        countries: "us",
+      });
 
-    geocoder.addTo("#geocoder");
+      geocoder.addTo("#geocoder");
+      setTheGeocoder(geocoder);
 
-    setTheGeocoder(geocoder);
+      // Add geocoder result to container.
+      geocoder.on("result", (e) => {
+        setResult(e.result);
+      });
 
-    // Add geocoder result to container.
-    geocoder.on("result", (e) => {
-      setResult(e.result);
-    });
-
-    // Clear results container when search is cleared.
-    geocoder.on("clear", () => {
-      setResult(null);
-    });
+      // Clear results container when search is cleared.
+      geocoder.on("clear", () => {
+        setResult(null);
+      });
+    }
 
     map.addControl(
       new GeolocateControl({
@@ -116,7 +119,7 @@ export default function ProjectMapPage(props) {
 
     map.on("click", (e) => {
       let features = map.queryRenderedFeatures(e.point, {
-        layers: ["projects-circle"],
+        layers: ["projects-circle"], 
       });
       let labels = map.queryRenderedFeatures(e.point, {
         layers: ["projects-label"],
@@ -135,7 +138,7 @@ export default function ProjectMapPage(props) {
 
     map.on("moveend", () => {
       let visibleFeatures = map.queryRenderedFeatures({
-        layers: ["projects-circle", "projects-label"],
+        layers: ["projects-circle", "projects-label"],  
       });
 
       // dedupe features based on slug
@@ -151,6 +154,36 @@ export default function ProjectMapPage(props) {
       }, []);
 
       setVisibleProjects(reducedFeatures);
+    });
+
+    map.on('mouseenter', 'projects-circle', (e) => {  
+      map.getCanvas().style.cursor = 'default';
+
+      const features = map.queryRenderedFeatures(e.point, {
+        layers: ['projects-circle']
+      });
+
+      if (!features.length) return;
+
+      const feature = features[0];
+
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+      })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML(`<h3>${feature.properties.name}</h3>`)
+        .addTo(map);
+
+      map._popup = popup;
+    });
+
+    map.on('mouseleave', 'projects-circle', () => { 
+      map.getCanvas().style.cursor = '';
+      if (map._popup) {
+        map._popup.remove();
+        delete map._popup;
+      }
     });
   }, []);
 
@@ -196,7 +229,7 @@ export default function ProjectMapPage(props) {
         </span>
       </div>
       <div id="geocoder" className="my-7 max-w-xl mx-auto"></div>
-      <div id="map" className="max-w-6xl mx-auto border-1 border-black h-[31.68rem]" />
+      <div id="map" className="max-w-[82.8rem] mx-auto border-1 border-black h-[36.432rem]" />
       <ProjectList
         projects={visibleProjects.map(p => p.properties)}
         title="All development projects in the current map view"

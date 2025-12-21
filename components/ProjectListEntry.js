@@ -13,21 +13,19 @@ const ProjectListEntry = ({ project }) => {
   }
 
   return (
-    <Link href={`/projects/${project.slug}`}>
-      <div className="border-1 border-black bg-white max-w-xl p-5 hover:cursor-pointer">
-        <h3 className="text-base leading-6 mb-2 mt-0">
-          <Link href={`/projects/${project.slug}`}>
-            {project.name}
-          </Link>
+    <div className="block border-1 border-black bg-white max-w-xl p-5">
+      <Link href={`/projects/${project.slug}`}>
+        <h3 className="text-base leading-6 mb-2 mt-0 hover:cursor-pointer">
+          {project.name}
         </h3>
-        {project.address !== "null" && <span className="font-normal text-sm">{` ${project.address ? project.address : `N/A`}`}</span>}
-        <div className="flex gap-3 mt-4 flex-wrap ">
-          {uses.map(u => (
-            <Tag key={u} type="use" value={u} />
-          ))}
-        </div>
+      </Link>
+      {project.address !== "null" && <span className="font-normal text-sm">{` ${project.address ? project.address : `N/A`}`}</span>}
+      <div className="flex gap-3 mt-4 flex-wrap ">
+        {uses.map(u => (
+          <Tag key={u} type="use" value={u} />
+        ))}
       </div>
-    </Link>
+    </div>
   );
 };
 

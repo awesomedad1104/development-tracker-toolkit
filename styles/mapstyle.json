@@ -2653,7 +2653,7 @@
         "paint":{
           "circle-radius": {
             "base": 1,
-            "stops": [[10, 2], [14, 6], [19, 15]]
+            "stops": [[10, 2.553], [14, 7.658], [19, 19.144]]
           },
           "circle-color": "rgba(128, 163, 251, 1)",
           "circle-stroke-width": 1,
