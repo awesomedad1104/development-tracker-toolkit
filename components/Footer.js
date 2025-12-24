@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="w-full pt-4 text-center">
           <h1>{siteTitle}</h1>
           <Link href="/contact-us">
-            <button>Contact us</button>
+            <button style={{ fontSize: "1.25rem" }}>Contact us</button>
           </Link>
           <p className="text-xs leading-6 text-center">
             &copy; {new Date().getFullYear()} {organization}
