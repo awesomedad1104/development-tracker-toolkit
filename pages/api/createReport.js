@@ -19,9 +19,8 @@ export default function handler(req, res) {
     newRecord.Projects = [newRecord.Projects]
   }
 
-  base('Tips').create(req.query)
+  base('Tips').create(newRecord)  // Changed from req.query to newRecord
     .then(r => {
       res.status(200).json({ status: 'success', newRecord: r._rawJson })
-    }
-    )
+    })
 }
